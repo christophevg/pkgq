@@ -39,8 +39,11 @@ dev = [
   "pytest-cov>=5.0.0",
   "mypy>=1.13.0",
   "ruff>=0.8.0",
+  "tox>=4.0.0",
+  "tox-uv>=1.0.0",
   "build>=1.0.0",
   "twine>=6.0.0",
+  "coveralls>=3.3.0",
 ]
 
 [project.scripts]
@@ -104,3 +107,15 @@ exclude_lines = [
   "raise NotImplementedError",
   "if TYPE_CHECKING:",
 ]
+
+[tool.tox]
+env_list = ["py310", "py311", "py312"]
+
+[tool.tox.env_run_base]
+description = "run tests with pytest"
+skip_install = false
+commands_pre = [
+  ["uv", "pip", "install", "-e", "."],
+  ["uv", "pip", "install", "pytest", "pytest-cov", "pytest-asyncio"],
+]
+commands = [["pytest", "tests", "-v", "--cov=pkgq", "--cov-report=term-missing"]]

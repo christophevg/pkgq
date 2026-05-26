@@ -1,0 +1,21 @@
+{
+  "name": "pkgq",
+  "version": "0.1.1",
+  "description": "Package Query - Find, create, and update package documentation for AI agents",
+  "author": {
+    "name": "Christophe VG",
+    "email": "contact@christophe.vg",
+    "url": "https://christophe.vg"
+  },
+  "homepage": "https://github.com/christophevg/pkgq",
+  "repository": "https://github.com/christophevg/pkgq",
+  "license": "MIT",
+  "keywords": [
+    "python",
+    "packages",
+    "documentation",
+    "agents",
+    "pypi",
+    "mcp"
+  ]
+}

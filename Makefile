@@ -1,37 +1,83 @@
-# pkgq Makefile
+-include ~/.claude/Makefile
 
-.PHONY: help install test lint build publish clean
+.PHONY: env-dev env-run install-pythons test test-cov test-all format lint typecheck check run build pre-publish publish clean clean-all help
 
-# Installation
-help:
-	@echo "pkgq - Package Query"
-	@echo ""
-	@echo "Commands:"
-	@echo "  make install    - Install dependencies"
-	@echo "  make test       - Run tests"
-	@echo "  make lint       - Run linter"
-	@echo "  make build      - Build package"
-	@echo "  make publish    - Publish to PyPI"
-	@echo "  make clean      - Clean build artifacts"
+## Environment
 
-install:
+env-dev: ## Install all dependencies (dev + docs)
+	uv sync --all-extras
+
+env-run: ## Install runtime dependencies only
 	uv sync
 
-test:
-	uv run pytest -v
+install-pythons: ## Install Python 3.10, 3.11, 3.12
+	uv python install 3.10 3.11 3.12
 
-lint:
-	uv run ruff check src/
-	uv run mypy src/
+## Testing
 
-build:
+test: env-dev ## Run tests (usage: make test / optional: TEST=file|file:test_name)
+	uv run pytest -v $(TEST)
+
+test-cov: env-dev ## Run tests with coverage
+	uv run pytest --cov=src --cov-report=term-missing $(TEST)
+
+test-all: env-dev ## Run tests on all Python versions
+	uv run tox
+
+## Code Quality
+
+format: env-dev ## Format code and fix linting issues
+	uv run ruff format src tests
+	uv run ruff check --fix src tests
+
+lint: env-dev ## Check code for linting issues
+	uv run ruff check src tests
+
+typecheck: env-dev ## Run type checking
+	uv run mypy src
+
+check: format lint typecheck test ## Run all quality checks
+
+## Running
+
+run: env-run ## Run the CLI
+	uv run pkgq --help
+
+## Build & Publish
+
+build: ## Build distribution packages
 	uv build
 
-publish: build
-	uv publish
+pre-publish: check ## Pre-publication checks (run before publishing)
+	@echo "Checking for relative image paths in README..."
+	@grep -n '!\[.*](media/' README.md && (echo "ERROR: Relative image paths found - use raw GitHub URLs for PyPI"; exit 1) || echo "OK: No relative image paths"
+	@echo "Checking version sync..."
+	@VERSION_PY=$$(grep '^version =' pyproject.toml | cut -d'"' -f2); \
+	VERSION_INIT=$$(grep '^__version__ = ' src/pkgq/__init__.py | cut -d'"' -f2); \
+	if [ "$$VERSION_PY" != "$$VERSION_INIT" ]; then \
+		echo "ERROR: Version mismatch - pyproject.toml ($$VERSION_PY) vs __init__.py ($$VERSION_INIT)"; \
+		exit 1; \
+	fi; \
+	echo "OK: Versions match ($$VERSION_PY)"
+	@echo "Pre-publication checks passed"
 
-clean:
-	rm -rf dist/
-	rm -rf .venv/
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
+publish: clean build ## Publish to PyPI (runs pre-publish checks)
+	@$(MAKE) pre-publish
+	uv run twine upload dist/*
+
+## Cleanup
+
+clean: ## Remove build artifacts
+	rm -rf dist/ build/ *.egg-info .pytest_cache .coverage .mypy_cache .ruff_cache
+	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+
+clean-all: clean ## Remove virtualenv and lock file
+	rm -rf .venv uv.lock
+
+## Help
+
+help: ## Show this help message
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | grep -v "install-pythons\|sync" | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'

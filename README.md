@@ -1,23 +1,63 @@
 # pkgq
 
-**PacKaGe Query** - Find API information for Python packages.
+[![PyPI](https://img.shields.io/pypi/v/pkgq.svg)][pypi]
+[![Python](https://img.shields.io/pypi/pyversions/pkgq.svg)][pypi]
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)][uv]
+[![CI](https://img.shields.io/github/actions/workflow/status/christophevg/pkgq/test.yml.svg)][ci]
+[![Coverage](https://img.shields.io/coveralls/github/christophevg/pkgq.svg)][coveralls]
+[![License](https://img.shields.io/github/license/christophevg/pkgq.svg)][license]
+[![Agentic](https://img.shields.io/badge/workflow-agentic-blueviolet?style=flat-square)](https://christophe.vg/about/Agentic-Workflow)
+[![PACKAGE.md](https://img.shields.io/badge/pkgq-PACKAGE.md-blueviolet)](https://github.com/christophevg/pkgq#readme)
+  
+> Make your Python package discoverable for AI coding agents in 3 steps.
 
-A fast, agent-friendly tool for discovering Python package documentation, capabilities, and migration guides.
+## What is PACKAGE.md?
 
-## Installation
+**PACKAGE.md** is a informally proposed documentation standard for Python packages optimized for AI agents. Unlike README.md (written for humans), PACKAGE.md provides structured, scannable content that coding agents can quickly understand:
+
+- **Purpose** - What the package does in one line
+- **Key Components** - Classes, functions, and their signatures
+- **Common Patterns** - Code examples for typical use cases
+- **Migration Guides** - How to upgrade between versions
+
+When you add PACKAGE.md to your repository root, coding agents using `pkgq` can instantly understand your package's capabilities.
+
+## Quick Start for Package Authors
+
+**3 steps to make your package discoverable:**
 
 ```bash
-# Install with uv
-uv add pkgq
+# 0. Add the marketplace (one-time setup)
+claude plugin marketplace add christophevg/marketplace
 
-# Or with pip
+# 1. Get the plugin
+claude plugin install pkgq@christophe.vg
+
+# 2. Generate documentation
+/pkgq:create
+
+# 3. Commit and push
+git add PACKAGE.md && git commit -m "docs: add PACKAGE.md" && git push
+```
+
+Done! Your package is now discoverable by coding agents using the `pkgq` tool or MCP server.
+
+**Add the badge to show your package supports AI agents:**
+
+```markdown
+[![PACKAGE.md](https://img.shields.io/badge/pkgq-PACKAGE.md-blueviolet)](https://github.com/christophevg/pkgq#readme)
+```
+
+## For Package Users
+
+### Installation
+
+```bash
 pip install pkgq
 
 # For MCP server support
-uv add "pkgq[mcp]"
+pip install "pkgq[mcp]"
 ```
-
-## Usage
 
 ### Python Module
 
@@ -28,92 +68,69 @@ from pkgq import find
 result = find("yoker")
 print(result.content)
 
-# Find specific version
-result = find("yoker", version="2.1.0")
-
 # Check for updates
 result = find("yoker", from_version="1.5.0")
-if result.version != "1.5.0":
-    print(f"Update available: {result.version}")
-
-# Save to cache
-result.save_to_cache()
 ```
 
 ### Command Line
 
 ```bash
-# Find package documentation
-pkgq find yoker
+% pkgq find yoker --save | head -15
+Saved to: /Users/xtof/.cache/pkgq/packages/yoker
+yoker 0.4.0 (cached)
+Source: github:christophevg/yoker
 
-# Find specific version
-pkgq find yoker --version 2.1.0
+                              Yoker
 
-# Check for updates
-pkgq find yoker --from-version 1.5.0
+A Python agent harness with configurable tools and guardrails - one who yokes
+agents together.
 
-# Save to cache
-pkgq find yoker --save
+Overview
 
-# Output as JSON
-pkgq find yoker --json
+Yoker is a library-first, event-driven agent harness for Python that integrates
+with Ollama. It provides a transparent, configurable runtime for AI agents with
+structured tool execution, guardrails, and event emission. Unlike CLI-first
+agent frameworks, Yoker is designed to be embedded in applications with full
+visibility into agent operations.
 
-# Manage cache
-pkgq cache --list
-pkgq cache --clear
-pkgq cache --dir
+% pkgq cache --list
+Cached packages (3):
+  pkgq 0.1.1 (pypi)
+  roomz 0.2.0 (github:christophevg/roomz)
+  yoker 0.4.0 (github:christophevg/yoker)
 ```
 
 ### MCP Server
 
 ```bash
-# Run MCP server
 pkgq-mcp-server
-
-# Or with uvx
-uvx --from pkgq pkgq-mcp-server
+# Or: uvx --from "pkgq[mcp]" pkgq-mcp-server
 ```
 
-The MCP server provides a `find_package` tool for use with Claude Code and other MCP-compatible agents.
+## Features
 
-## Cache
-
-Package documentation is cached locally:
-
-- Default: `~/.cache/pkgq/packages/`
-- Custom: Set `PKGQ_CACHE` environment variable
-
-Cache structure:
-```
-~/.cache/pkgq/packages/
-├── yoker/
-│   ├── PACKAGE.md      # Package documentation
-│   └── metadata.json   # Version and source info
-└── roomz/
-    ├── PACKAGE.md
-    └── metadata.json
-```
+| Feature | Description |
+|---------|-------------|
+| Cascade lookup | Cache → GitHub PACKAGE.md → PyPI |
+| MCP server | Tool for Claude Code agents |
+| Auto-caching | Results saved to `~/.cache/pkgq/packages/` |
+| Plugin skills | `/pkgq:create` and `/pkgq:update` |
 
 ## Development
 
 ```bash
-# Clone repository
-git clone https://github.com/christophevg/pkgq.git
-cd pkgq
-
-# Install dependencies
-uv sync
-
-# Run tests
-uv run pytest
-
-# Run linter
-uv run ruff check src/
-
-# Run MCP server
-uv run pkgq-mcp-server
+% git clone https://github.com/christophevg/pkgq.git
+% cd pkgq
+% uv sync --all-extras
+% uv run pytest
 ```
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+[MIT](LICENSE)
+
+[pypi]: https://pypi.org/project/pkgq/
+[uv]: https://docs.astral.sh/uv/
+[ci]: https://github.com/christophevg/pkgq/actions
+[coveralls]: https://coveralls.io/github/christophevg/pkgq
+[license]: https://github.com/christophevg/pkgq/blob/main/LICENSE
