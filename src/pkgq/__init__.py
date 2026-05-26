@@ -1,0 +1,11 @@
+"""
+pkgq - Package Query
+
+Find API information for Python packages.
+"""
+
+__version__ = "0.1.0"
+
+from pkgq.find import find, FindResult
+
+__all__ = ["find", "FindResult"]
