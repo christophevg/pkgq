@@ -7,9 +7,8 @@ from various sources (GitHub, PyPI, etc.).
 
 import json
 import os
-from pathlib import Path
-from typing import Optional
 from dataclasses import dataclass
+from pathlib import Path
 
 import httpx
 
@@ -34,7 +33,7 @@ class FindResult:
             "cached": self.cached,
         }
 
-    def save_to_cache(self, cache_dir: Optional[Path] = None) -> Path:
+    def save_to_cache(self, cache_dir: Path | None = None) -> Path:
         """Save result to cache directory."""
         if cache_dir is None:
             cache_dir = get_cache_dir()
@@ -72,7 +71,7 @@ def get_cache_dir() -> Path:
     return cache_dir
 
 
-def check_cached(package: str, cache_dir: Optional[Path] = None) -> Optional[FindResult]:
+def check_cached(package: str, cache_dir: Path | None = None) -> FindResult | None:
     """Check if package is cached locally.
 
     Args:
@@ -127,7 +126,7 @@ def get_pypi_info(package: str) -> dict:
         return response.json()
 
 
-def extract_github_url(pypi_info: dict) -> Optional[str]:
+def extract_github_url(pypi_info: dict) -> str | None:
     """Extract GitHub URL from PyPI info.
 
     Args:
@@ -140,7 +139,7 @@ def extract_github_url(pypi_info: dict) -> Optional[str]:
     project_urls = info.get("project_urls") or {}
 
     # Check project_urls for GitHub
-    for key, url in project_urls.items():
+    for _key, url in project_urls.items():
         if "github.com" in url.lower():
             return url
 
@@ -184,7 +183,7 @@ def parse_github_url(url: str) -> tuple[str, str]:
 
 def fetch_package_md_from_github(
     owner: str, repo: str, branch: str = "main"
-) -> Optional[str]:
+) -> str | None:
     """Fetch PACKAGE.md from GitHub repository.
 
     Args:
@@ -226,9 +225,9 @@ def get_default_branch(owner: str, repo: str) -> str:
 
 def find(
     package: str,
-    version: Optional[str] = None,
-    from_version: Optional[str] = None,
-    cache_dir: Optional[Path] = None,
+    version: str | None = None,
+    from_version: str | None = None,
+    cache_dir: Path | None = None,
     verbose: bool = False,
 ) -> FindResult:
     """Find package documentation.

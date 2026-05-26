@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "Package Query - Find API information for Python packages"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "Christophe VG", email = "contact@christophe.vg"}]
 keywords = ["package", "query", "api", "documentation", "mcp", "agent"]
 classifiers = [

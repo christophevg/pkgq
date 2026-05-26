@@ -8,8 +8,7 @@ from typing import Annotated
 
 from fastmcp import FastMCP
 
-from pkgq import find, FindResult
-
+from pkgq import find
 
 # Create MCP server
 mcp = FastMCP(
