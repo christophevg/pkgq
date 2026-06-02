@@ -21,15 +21,48 @@ Updates existing package documentation to reflect new versions, including migrat
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| package | Yes | Package name |
+| package | No | Package name (defaults to current project) |
 | version | No | Target version (defaults to latest) |
 | from_version | No | Current version (for comparison) |
 
 ## Process
 
+### 0. Determine Target Package
+
+**If package parameter provided:**
+
+Use the specified package name. This is for external dependencies.
+
+**If package parameter NOT provided:**
+
+Work on the current project folder (same behavior as `/pkgq:create`):
+
+1. Detect project root by looking for:
+   - `pyproject.toml`
+   - `setup.py`
+   - `setup.cfg`
+
+2. Read project metadata from pyproject.toml:
+   ```toml
+   [project]
+   name = "package-name"
+   version = "1.0.0"
+   ```
+
+3. Use the current project's PACKAGE.md as the target
+
+**This allows two workflows:**
+
+| Workflow | Command | Use Case |
+|----------|---------|----------|
+| External package | `/pkgq:update package=yoker` | Update docs for a dependency |
+| Current project | `/pkgq:update` | Update own project docs after changes |
+
 ### 1. Check Local Cache
 
-Verify existing documentation:
+**For external packages:**
+
+Verify existing documentation in cache:
 
 ```
 ~/.cache/pkgq/packages/{package}/
@@ -38,6 +71,10 @@ Verify existing documentation:
 ```
 
 If missing, use `/pkgq:find` first to fetch documentation.
+
+**For current project:**
+
+Look for existing PACKAGE.md in project root. If missing, suggest running `/pkgq:create` first.
 
 ### 2. Fetch Latest Metadata
 
