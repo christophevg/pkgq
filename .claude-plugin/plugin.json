@@ -1,6 +1,6 @@
 {
   "name": "pkgq",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Package Query - Find, create, and update package documentation for AI agents",
   "author": {
     "name": "Christophe VG",

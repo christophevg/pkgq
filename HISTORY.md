@@ -1,6 +1,6 @@
 # pkgq Version History
 
-## 0.2.0 (2026-06-26)
+## 0.3.0 (2026-06-26)
 
 ### New Features
 
@@ -27,6 +27,19 @@
 - Existing dependencies: httpx>=0.27.0, pydantic>=2.0.0, rich>=13.0.0
 
 ---
+
+## 0.2.0 (2026-05-26)
+
+### New Features
+
+- Added plugin structure for Claude Code integration
+- Added CI/CD with GitHub Actions
+- Added PACKAGE.md for agent-ready documentation
+- Added `save` parameter to MCP tool with auto-cache results
+
+---
+
+## 0.1.1 (2026-05-26)
 
 ## 0.1.1 (2026-05-26)
 

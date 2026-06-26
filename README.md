@@ -96,7 +96,7 @@ visibility into agent operations.
 
 % pkgq cache --list
 Cached packages (3):
-  pkgq 0.2.0 (pypi)
+  pkgq 0.3.0 (pypi)
   roomz 0.2.0 (github:christophevg/roomz)
   yoker 0.5.0 (github:christophevg/yoker)
 ```
