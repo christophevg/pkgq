@@ -58,14 +58,10 @@ Repository = "https://github.com/christophevg/pkgq"
 Issues = "https://github.com/christophevg/pkgq/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pkgq", "skills"]
+packages = ["src/pkgq"]
+artifacts = ["src/pkgq/skills/**/*.md"]
 
 [tool.hatch.build.targets.sdist]
-exclude = [
-  "*.pyc",
-  "__pycache__",
-  "*.egg-info",
-]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
