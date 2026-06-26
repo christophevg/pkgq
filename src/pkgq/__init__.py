@@ -4,7 +4,7 @@ pkgq - Package Query
 Find API information for Python packages.
 """
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 from pkgq.find import FindResult, find
 from pkgq.plugin import __YOKER_MANIFEST__

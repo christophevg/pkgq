@@ -1,5 +1,16 @@
 # pkgq Version History
 
+## 0.3.1 (2026-06-26)
+
+### Bug Fixes
+
+- **Package structure**: Fixed skills directory location in package
+  - Skills now correctly packaged as `pkgq/skills/` instead of root level
+  - Skills directory now properly included in distribution
+  - Removed symlink confusion that caused incorrect package structure
+
+---
+
 ## 0.3.0 (2026-06-26)
 
 ### New Features

@@ -201,7 +201,7 @@ The plugin manifest is automatically discovered when pkgq is loaded as a yoker p
 
 ## Version Notes
 
-**Current Version:** 0.3.0
+**Current Version:** 0.3.1
 
 ### Recent Features
 
