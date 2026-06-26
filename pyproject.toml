@@ -58,7 +58,7 @@ Repository = "https://github.com/christophevg/pkgq"
 Issues = "https://github.com/christophevg/pkgq/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pkgq"]
+packages = ["src/pkgq", "skills"]
 
 [tool.hatch.build.targets.sdist]
 exclude = [
