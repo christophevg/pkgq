@@ -57,12 +57,6 @@ Documentation = "https://github.com/christophevg/pkgq#readme"
 Repository = "https://github.com/christophevg/pkgq"
 Issues = "https://github.com/christophevg/pkgq/issues"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/pkgq"]
-artifacts = ["src/pkgq/skills/**/*.md"]
-
-[tool.hatch.build.targets.sdist]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"

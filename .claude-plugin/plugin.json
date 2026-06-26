@@ -17,5 +17,6 @@
     "agents",
     "pypi",
     "mcp"
-  ]
+  ],
+  "skills": [ "./src/pkgq/skills" ]
 }
