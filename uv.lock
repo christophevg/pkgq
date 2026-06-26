@@ -410,6 +410,24 @@ wheels = [
 ]
 
 [[package]]
+name = "clevis"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "dacite" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/86/12/b14eef0d2cecc07f42015b901ce69a46c95e606c9fa9298014c38fccd8ae/clevis-0.5.0.tar.gz", hash = "sha256:d402aa327f751effba53203501c7201850a7d04d18c2dd4a2259b90417f31c64", size = 215649, upload-time = "2026-06-12T07:31:37.702Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/70/7e/27aa8b83de1728c38f028eae6af177e273f04bbe621d6847e2fc8065cb17/clevis-0.5.0-py3-none-any.whl", hash = "sha256:b194baf2b8abb3a4f66f6b857927e4dec82ae9ae914dd447247e5594cea7b1b1", size = 27319, upload-time = "2026-06-12T07:31:35.91Z" },
+]
+
+[package.optional-dependencies]
+tomlev = [
+    { name = "tomlev", version = "0.2.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "tomlev", version = "1.0.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+]
+
+[[package]]
 name = "click"
 version = "8.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -637,6 +655,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/34/07/bf61d13de86d96a4c46aff00c9ca0eced44bcc8c3e16280605c1253e5720/cyclopts-4.16.1.tar.gz", hash = "sha256:8aa47bf92a5fb33abca5af05e576eecdb0d2f79893ad29238046df78370fc4a8", size = 181196, upload-time = "2026-05-25T15:29:08.518Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/00/8d/7f362c2fb8ef4decd2160bc24d4292c6ca658cc6d9a161b89ca5122bbdbf/cyclopts-4.16.1-py3-none-any.whl", hash = "sha256:617795392c4113a2c2cc7af716f20244900e87f23daa05442d1268d81472a592", size = 219020, upload-time = "2026-05-25T15:29:09.646Z" },
+]
+
+[[package]]
+name = "dacite"
+version = "1.9.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/55/a0/7ca79796e799a3e782045d29bf052b5cde7439a2bbb17f15ff44f7aacc63/dacite-1.9.2.tar.gz", hash = "sha256:6ccc3b299727c7aa17582f0021f6ae14d5de47c7227932c47fec4cdfefd26f09", size = 22420, upload-time = "2025-02-05T09:27:29.757Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/94/35/386550fd60316d1e37eccdda609b074113298f23cef5bddb2049823fe666/dacite-1.9.2-py3-none-any.whl", hash = "sha256:053f7c3f5128ca2e9aceb66892b1a3c8936d02c686e707bee96e19deef4bc4a0", size = 16600, upload-time = "2025-02-05T09:27:24.345Z" },
 ]
 
 [[package]]
@@ -1235,6 +1262,19 @@ wheels = [
 ]
 
 [[package]]
+name = "ollama"
+version = "0.6.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fc/72/5f12423b6b39ca8430fbe56f77fcf4ef60f63067c7c4a2e30e200ed9ec16/ollama-0.6.2.tar.gz", hash = "sha256:936d55daa684f474364c098611c933626f8d6c7d67065c5b7ae0c477b508b07f", size = 53145, upload-time = "2026-04-29T21:21:15.018Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c4/ab/d6722beeb2d10f7a3b9ff49375708904fde18f82b5609a0bc4aeb5996a4d/ollama-0.6.2-py3-none-any.whl", hash = "sha256:3ad7daab28e5a973445c36a73882a3ef698c2ebb00e21e308652741577509f7d", size = 15115, upload-time = "2026-04-29T21:21:13.794Z" },
+]
+
+[[package]]
 name = "openapi-pydantic"
 version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1293,6 +1333,7 @@ dependencies = [
     { name = "httpx" },
     { name = "pydantic" },
     { name = "rich" },
+    { name = "yoker" },
 ]
 
 [package.optional-dependencies]
@@ -1328,6 +1369,7 @@ requires-dist = [
     { name = "tox", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "tox-uv", marker = "extra == 'dev'", specifier = ">=1.0.0" },
     { name = "twine", marker = "extra == 'dev'", specifier = ">=6.0.0" },
+    { name = "yoker", specifier = ">=0.5.0" },
 ]
 provides-extras = ["mcp", "dev"]
 
@@ -1347,6 +1389,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f9/e2/3e91f31a7d2b083fe6ef3fa267035b518369d9511ffab804f839851d2779/pluggy-1.6.0.tar.gz", hash = "sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3", size = 69412, upload-time = "2025-05-15T12:30:07.975Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl", hash = "sha256:e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746", size = 20538, upload-time = "2025-05-15T12:30:06.134Z" },
+]
+
+[[package]]
+name = "prompt-toolkit"
+version = "3.0.52"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "wcwidth" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a1/96/06e01a7b38dce6fe1db213e061a4602dd6032a8a97ef6c1a862537732421/prompt_toolkit-3.0.52.tar.gz", hash = "sha256:28cde192929c8e7321de85de1ddbe736f1375148b02f2e17edd840042b1be855", size = 434198, upload-time = "2025-08-27T15:24:02.057Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/84/03/0d3ce49e2505ae70cf43bc5bb3033955d2fc9f932163e84dc0779cc47f48/prompt_toolkit-3.0.52-py3-none-any.whl", hash = "sha256:9aac639a3bbd33284347de5ad8d68ecc044b91a762dc39b7c21095fcd6a19955", size = 391431, upload-time = "2025-08-27T15:23:59.498Z" },
 ]
 
 [[package]]
@@ -2049,6 +2103,46 @@ wheels = [
 ]
 
 [[package]]
+name = "structlog"
+version = "26.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/89/b4a0bcfdf4f71a3dea31379f095929613d7e4528a0996bca6aa964cd0dca/structlog-26.1.0.tar.gz", hash = "sha256:f63a716cbd1b1291cf7661de7794b455acfa4c43c5bcf1630e6ad5ddc1adb3b7", size = 1459881, upload-time = "2026-06-06T07:33:39.348Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a9/18/489c97b834dfff9cf2fc2507cede4bcd4b11e67f84bc462acd1992496f86/structlog-26.1.0-py3-none-any.whl", hash = "sha256:e081a26d6c373e6d201eca24eede26d8ffab07f88f477822e679183428d3d91e", size = 73764, upload-time = "2026-06-06T07:33:38.046Z" },
+]
+
+[[package]]
+name = "tomlev"
+version = "0.2.2"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.11'",
+]
+dependencies = [
+    { name = "tomli", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1f/d0/4ce06bddabf71b9a0ff8c2614fbe2b7d747daa73abb43250c5a6a9b74c7e/tomlev-0.2.2.tar.gz", hash = "sha256:7d3faa59114e6474eea698bdd5b01be81911b8782de6b1a6e837831527ec1ae1", size = 5387, upload-time = "2023-12-26T08:39:55.281Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e0/35/77c42585e13304c467946d288474d897ef10a90228b6ccae1522f52f8123/tomlev-0.2.2-py3-none-any.whl", hash = "sha256:6ed7e01cb9ef4f9cf6a441804d7c42bc0f28cedf103f0200015731f800bd3914", size = 7021, upload-time = "2023-12-26T08:39:53.447Z" },
+]
+
+[[package]]
+name = "tomlev"
+version = "1.0.9"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.15'",
+    "python_full_version >= '3.11' and python_full_version < '3.15'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/62/7c0403b34bb81fd66784829942c48ca80a2b9bd7012ff2b11b9626a0ec7a/tomlev-1.0.9.tar.gz", hash = "sha256:93d2864b82125feb16b4ba97d4bbc4fb57d8f3475756ef78ca8b225e942cf740", size = 157072, upload-time = "2026-02-24T13:41:57.499Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/83/ba/2275980fda7106376107312cd752b8aa288ed9454ba24476cbc4cdbb8a12/tomlev-1.0.9-py3-none-any.whl", hash = "sha256:d5e82a9d2a05fcb437c2b877f00b9a2b29154e9d67ffa6a2692eeaf886767fd8", size = 37261, upload-time = "2026-02-24T13:41:56.452Z" },
+]
+
+[[package]]
 name = "tomli"
 version = "2.4.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2408,6 +2502,15 @@ wheels = [
 ]
 
 [[package]]
+name = "wcwidth"
+version = "0.8.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/49/b4/51fe890511f0f242d07cb1ebe6a5b6db417262b9d2568b460347c57d95cc/wcwidth-0.8.1.tar.gz", hash = "sha256:faf5b4a5366a72dc49cad48cdf21f52bdf63bdda995178e483ba247ff79089b9", size = 1466072, upload-time = "2026-06-08T05:57:23.146Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/6e/95b0e537de1f4d4301f76f944642c6da50d1511cc7b3d64dc418a66c7509/wcwidth-0.8.1-py3-none-any.whl", hash = "sha256:f453740b1e4a4f3291faa37944c555d71056c4da08d59809b307ef4feba695c8", size = 323092, upload-time = "2026-06-08T05:57:21.413Z" },
+]
+
+[[package]]
 name = "websockets"
 version = "16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2476,6 +2579,25 @@ wheels = [
 ]
 
 [[package]]
+name = "yoker"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "clevis", extra = ["tomlev"] },
+    { name = "httpx" },
+    { name = "ollama" },
+    { name = "prompt-toolkit" },
+    { name = "python-dotenv" },
+    { name = "pyyaml" },
+    { name = "rich" },
+    { name = "structlog" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/17/6b/943d89344cd5e7abb8c88f4f007be831b8ef2eaace17e60e1905c47f8e7e/yoker-0.5.0.tar.gz", hash = "sha256:da643c312e9a8c7e58743d31a6ea35f45172a862757a2579327b2b7970e10ee4", size = 1033955, upload-time = "2026-06-26T10:55:52.71Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/49/0d/650b770c50690b50dd1ba7ba7ddd20891e61be9a5a11b3a30f4699247b79/yoker-0.5.0-py3-none-any.whl", hash = "sha256:00b93eb17acf74b4abc074495b20207742a3cf827bad8692c6080133821fe213", size = 142987, upload-time = "2026-06-26T10:55:49.411Z" },
+]
+
+[[package]]
 name = "zipp"
 version = "4.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2483,3 +2605,4 @@ sdist = { url = "https://files.pythonhosted.org/packages/b9/d8/eab98a517c14134c0
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3a/13/547360d81e6d88d58492968ffda9f9542854f11310ee556fef14260cc886/zipp-4.1.0-py3-none-any.whl", hash = "sha256:25ad4e16390cd314347dd8f1de67a2ac538ae658ed4ab9db16029c07c188e97f", size = 10238, upload-time = "2026-05-18T20:08:57.045Z" },
 ]
+

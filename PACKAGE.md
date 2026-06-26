@@ -168,6 +168,27 @@ The MCP server provides the `find_package` tool for Claude Code and other MCP-co
 export PKGQ_CACHE=/path/to/cache
 ```
 
+## Yoker Plugin
+
+When using pkgq with the yoker agent harness, it can be loaded as a plugin to provide
+tools and skills directly within yoker sessions.
+
+```bash
+# Run yoker with pkgq plugin
+uvx --with pkgq yoker --with pkgq
+```
+
+This exposes:
+
+**Tools:**
+- `pkgq:find` - Find package documentation
+
+**Skills:**
+- `pkgq:create` - Generate PACKAGE.md for Python projects
+- `pkgq:update` - Update package documentation for new versions
+
+The plugin manifest is automatically discovered when pkgq is loaded as a yoker plugin.
+
 ## Dependencies
 
 | Package | Purpose |
@@ -175,14 +196,17 @@ export PKGQ_CACHE=/path/to/cache
 | `httpx>=0.27.0` | HTTP client for API requests |
 | `pydantic>=2.0.0` | Data validation (optional, for future use) |
 | `rich>=13.0.0` | Terminal output formatting |
+| `yoker>=0.5.0` | Yoker plugin system (required) |
 | `fastmcp>=3.0.0` | MCP server implementation (optional, `[mcp]` extra) |
 
 ## Version Notes
 
-**Current Version:** 0.1.1
+**Current Version:** 0.2.0
 
 ### Recent Features
 
+- Added yoker plugin support with tools and skills
+- Moved skills into package for plugin distribution
 - Added `save` parameter to MCP tool with auto-cache results
 - Fixed license format and linter issues for PyPI compatibility
 - Initial implementation with cascade lookup (cache → GitHub → PyPI)

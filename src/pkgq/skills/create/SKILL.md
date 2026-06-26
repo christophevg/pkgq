@@ -1,0 +1,1 @@
+../../src/pkgq/skills/create/SKILL.md

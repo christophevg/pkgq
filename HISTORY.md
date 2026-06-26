@@ -1,5 +1,33 @@
 # pkgq Version History
 
+## 0.2.0 (2026-06-26)
+
+### New Features
+
+- **Yoker plugin support**: pkgq can now be loaded as a yoker plugin
+  - Exposes `find` tool for package documentation queries
+  - Includes `create` and `update` skills for PACKAGE.md generation
+  - Plugin manifest auto-discovered by yoker
+- **Skills integration**: Skills moved into package for plugin distribution
+  - `create` skill: Generate PACKAGE.md for Python projects
+  - `update` skill: Update documentation for new versions
+- **Module restructuring**: Added `plugin.py` module for yoker integration
+  - Clean separation between core API and plugin interface
+  - Mirrors existing `mcp.py` architecture pattern
+
+### Breaking Changes
+
+- **Skills location**: Skills moved from `skills/` to `src/pkgq/skills/`
+  - Root `skills/` now a symlink for local development
+  - Skills distributed with package when installed as yoker plugin
+
+### Dependencies
+
+- Added `yoker>=0.5.0` as required dependency
+- Existing dependencies: httpx>=0.27.0, pydantic>=2.0.0, rich>=13.0.0
+
+---
+
 ## 0.1.1 (2026-05-26)
 
 ### New Features
