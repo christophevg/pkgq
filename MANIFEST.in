@@ -1,0 +1,2 @@
+recursive-include src/pkgq/skills *.md
+graft src/pkgq/skills

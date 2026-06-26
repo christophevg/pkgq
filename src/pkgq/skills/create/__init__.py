@@ -1,0 +1,1 @@
+"""Create skill for generating PACKAGE.md files."""
