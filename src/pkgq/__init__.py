@@ -10,4 +10,3 @@ from pkgq.find import FindResult, find
 from pkgq.plugin import __YOKER_MANIFEST__
 
 __all__ = ["find", "FindResult", "__YOKER_MANIFEST__"]
-

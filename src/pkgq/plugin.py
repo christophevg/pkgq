@@ -39,4 +39,3 @@ __YOKER_MANIFEST__ = PluginManifest(
 )
 
 __all__ = ["__YOKER_MANIFEST__", "yoker_tool_find"]
-
