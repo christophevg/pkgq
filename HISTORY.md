@@ -1,5 +1,16 @@
 # pkgq Version History
 
+## 0.3.2 (2026-06-26)
+
+### Bug Fixes
+
+- **Package structure**: Fixed skills directory location for proper distribution
+  - Removed symlink that broke hatchling build process
+  - Configured skills path in plugin.json for local development
+  - Skills now properly included in installed package at `pkgq/skills/`
+
+---
+
 ## 0.3.1 (2026-06-26)
 
 ### Bug Fixes

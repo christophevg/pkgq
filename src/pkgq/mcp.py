@@ -13,7 +13,7 @@ from pkgq import find
 # Create MCP server
 mcp = FastMCP(
   name="pkgq",
-  version="0.3.1",
+  version="0.3.2",
 )
 
 
