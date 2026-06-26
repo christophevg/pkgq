@@ -30,7 +30,7 @@ def yoker_tool_find(
   return result.content
 
 
-yoker_tool_find.__yoker_name__ = "find"
+yoker_tool_find.__yoker_name__ = "find"  # type: ignore[attr-defined]
 
 
 __YOKER_MANIFEST__ = PluginManifest(
